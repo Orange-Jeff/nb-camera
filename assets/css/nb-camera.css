@@ -1,0 +1,145 @@
+/* Version 6.3.4 (2025-11-13) - Added countdown overlay and enhanced timer styling */
+.nbc-ui { border: 1px solid #ddd; padding: 12px; border-radius: 6px; background: #fff; position: relative; }
+.nbc-row { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+.nbc-video-wrap { background: #000; display: block; position: relative; }
+.nbc-video { width: 100%; height: auto; background: #000; border-radius: 4px; }
+.nbc-controls { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-top: 8px; }
+.nbc-actions { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-top: 8px; }
+.nbc-preview { margin-top: 10px; }
+.nbc-retry, .nbc-flip { padding: 4px 8px; font-size: 12px; }
+
+/* Countdown overlay */
+.nbc-countdown {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 120px;
+  font-weight: bold;
+  color: #fff;
+  text-shadow: 0 0 20px rgba(0,0,0,0.8), 0 0 40px rgba(255,255,255,0.5);
+  z-index: 50;
+  pointer-events: none;
+  animation: countdown-pulse 1s ease-in-out;
+}
+@keyframes countdown-pulse {
+  0% { transform: translate(-50%, -50%) scale(0.8); opacity: 0; }
+  50% { transform: translate(-50%, -50%) scale(1.1); opacity: 1; }
+  100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+}
+
+/* Timer display - digital stopwatch style */
+.nbc-timer {
+  font-family: 'Courier New', monospace;
+  font-size: 18px;
+  font-weight: bold;
+  color: #f00;
+  background: rgba(0,0,0,0.7);
+  padding: 4px 12px;
+  border-radius: 4px;
+  letter-spacing: 2px;
+}
+
+/* Notification message */
+.nbc-notification {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0,0,0,0.85);
+  color: #fff;
+  padding: 16px 24px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  z-index: 100;
+  display: none;
+  opacity: 0;
+  transition: opacity 0.3s;
+  pointer-events: none;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+/* Orange button theme */
+.nbc-ui .button,
+.nbc-open {
+  background: linear-gradient(to bottom, #ff9933 0%, #ff7700 100%);
+  border: 1px solid #dd6600;
+  color: #fff;
+  border-radius: 6px;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s;
+  text-decoration: none;
+  display: inline-block;
+}
+.nbc-ui .button:hover,
+.nbc-open:hover {
+  background: linear-gradient(to bottom, #ffaa44 0%, #ff8811 100%);
+  border-color: #ee7700;
+}
+.nbc-ui .button:active,
+.nbc-open:active {
+  background: #dd6600;
+}
+.nbc-ui .button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.nbc-download:hover {
+  color: #fff;
+}
+
+/* Recording indicator - red dot in top-right of video */
+.nbc-rec-indicator {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 14px;
+  height: 14px;
+  background: #f00;
+  border-radius: 50%;
+  box-shadow: 0 0 8px rgba(255,0,0,0.8);
+  animation: pulse-rec 1.5s ease-in-out infinite;
+}
+@keyframes pulse-rec {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(1.1); }
+}
+
+/* Popup modal - high z-index, positioned 100px lower */
+.nbc-modal {
+  position: fixed;
+  inset: 0;
+  display: block;
+  z-index: 999999;
+}
+.nbc-modal[hidden] { display: none !important; }
+.nbc-modal-backdrop { position: absolute; inset: 0; background: rgba(0,0,0,0.5); }
+.nbc-modal-content {
+  position: relative;
+  margin: calc(5vh + 100px) auto 5vh;
+  max-width: 90vw;
+  width: 700px;
+  background: #fff;
+  padding: 12px;
+  border-radius: 8px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+.nbc-close {
+  position: absolute;
+  right: 8px;
+  top: 8px;
+  background: transparent;
+  border: none;
+  font-size: 28px;
+  line-height: 1;
+  cursor: pointer;
+  color: #666;
+  font-weight: bold;
+  z-index: 10;
+}
+.nbc-close:hover {
+  color: #000;
+}
